@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist_flutter/bloc/todo_bloc.dart';
 import 'todo_screen.dart';
 
 void main() {
@@ -10,9 +12,16 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TodoScreen(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+      ),
+      home: BlocProvider(
+        create: (context) => TodoBloc(),
+        child: TodoScreen(),
+      ),
     );
   }
 }
