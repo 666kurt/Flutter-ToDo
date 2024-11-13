@@ -33,8 +33,10 @@ class TodoScreen extends StatelessWidget {
               onTap: () {
                 final int id = Random().nextInt(10000);
                 final Todo todo = Todo(id: id, title: _controller.text);
-                context.read<TodoBloc>().add(AddTodoEvent(todo: todo));
-                _controller.clear();
+                if (_controller.text.isNotEmpty) {
+                  context.read<TodoBloc>().add(AddTodoEvent(todo: todo));
+                  _controller.clear();
+                }
               },
               child: Container(
                 width: double.infinity,
